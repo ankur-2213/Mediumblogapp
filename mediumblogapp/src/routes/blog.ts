@@ -18,8 +18,8 @@ blogRouter.use('/*',async (c,next)=>{
     const token=c.req.header("authorization")|| "";
     const user=await verify(token,c.env.JWT_SECRET);
     if(user){
-        //@ts-ignore
-        c.set("userId",user.id);
+      
+        c.set("userId",user.id as string);
         await next();
     }
     else{
@@ -84,7 +84,18 @@ blogRouter.post('/', async (c) => {
     const prisma=new PrismaClient({
        datasourceUrl:c.env.DATABASE_URL
     }).$extends(withAccelerate())
-    const blogs=await prisma.blog.findMany();
+    const blogs=await prisma.blog.findMany({
+      select:{
+        content:true,
+        title:true,
+        id:true,
+        author:{
+          select:{
+            name:true
+          }
+        }
+      }
+    });
     return c.json({
        blog:blogs
     })
@@ -98,6 +109,16 @@ blogRouter.post('/', async (c) => {
         const blog= await prisma.blog.findFirst({
             where:{
                 id: Number(id),
+            },
+            select:{
+              id:true,
+              content:true,
+              title:true,
+             author:{
+             select:{
+              name:true
+          }
+        }
             }
           })
         return c.json({

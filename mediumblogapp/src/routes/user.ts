@@ -2,7 +2,6 @@ import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client/edge'
 import { withAccelerate } from '@prisma/extension-accelerate'
 import{decode,sign,verify} from 'hono/jwt'
-import z from "zod"
 import { signupInput,signinInput,updateBlogInput,createBlogInput } from '@ankur1357/medium-common1'
 
 export const userRouter=new Hono<{
@@ -33,9 +32,9 @@ userRouter.post('/signup', async (c) => {
         },
       })
       const token=await sign({id:user.id},c.env.JWT_SECRET )
-    return c.json({
-      jwt:token
-      }) 
+    return c.text(
+      token
+      ) 
     }
      catch(e){
         return c.text('User Already exists')
@@ -67,9 +66,9 @@ userRouter.post('/signup', async (c) => {
         return c.text("user doesnt exist")
       }
       const token=await sign({id:user.id},c.env.JWT_SECRET )
-    return c.json({
-      jwt:token
-      }) 
+      return c.text(
+        token
+        ) 
     }
      catch(e){
         return c.text('User Already exists')
