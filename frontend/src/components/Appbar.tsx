@@ -17,6 +17,7 @@ export const AppBar = () => {
                         Publish
                     </button>
                 </Link>
+               
                 <Avatar name={name} size="big" />
             </div>
         </div>

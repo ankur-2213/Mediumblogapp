@@ -38,13 +38,14 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
         </div>
       </div>
       <div>
-      {type==="signup"?<LabelledInput label="Name" placeholder="Ankur..." onChange={(e)=>{
+      
+      {type==="signup"?<LabelledInput  type={"name"} label="Name" placeholder="Ankur..." onChange={(e)=>{
         setpostInputs({
             ...postInputs,//existing username and password
             name:e.target.value
         })
       }}/>:null}
-      <LabelledInput label="Username" placeholder="Ankur@gmail.com" onChange={(e)=>{
+      <LabelledInput label="Username"  type={"username"}  placeholder="Ankur@gmail.com" onChange={(e)=>{
         setpostInputs({
             ...postInputs,//existing username and password
             username:e.target.value
@@ -56,7 +57,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             password:e.target.value
         })
       }}/>
-      <button onClick={sendRequest} type="button" className="mt-8 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  ">{type==="Signup"?"Signup":"Signin"}</button>
+      <button onClick={sendRequest} type="button" className="mt-8 w-full text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700  ">{type === "signup" ? "Signup" : "Signin"}
+      </button>
       </div>
       </div>
     </div>
@@ -68,7 +70,8 @@ interface LabelledInputType{
     onChange:(e: ChangeEvent<HTMLInputElement>)=> void;
     type?:string;
 }
-function LabelledInput({  label, placeholder, onChange,type }) {
+
+function LabelledInput({  label, placeholder, onChange,type }:LabelledInputType) {
     return <div>
       <label className="block mb-2 text-sm font-medium text-black">
         {label}
