@@ -45,13 +45,13 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             name:e.target.value
         })
       }}/>:null}
-      <LabelledInput label="Username"  type={"username"}  placeholder="Ankur@gmail.com" onChange={(e)=>{
+      <LabelledInput label="Username"    placeholder="Ankur@gmail.com" onChange={(e)=>{
         setpostInputs({
             ...postInputs,//existing username and password
             username:e.target.value
         })
       }}/>
-      <LabelledInput label="Password" type={"password"} placeholder="12345" onChange={(e)=>{
+      <LabelledInput label="Password" placeholder="12345" onChange={(e)=>{
         setpostInputs({
             ...postInputs,//existing username and password
             password:e.target.value
