@@ -97,7 +97,7 @@ blogRouter.post('/', async (c) => {
       }
     });
     return c.json({
-       blog:blogs
+       blogs:blogs
     })
  })
   blogRouter.get('/:id', async (c) => {
@@ -122,7 +122,7 @@ blogRouter.post('/', async (c) => {
             }
           })
         return c.json({
-            id: blog
+            blog: blog
         })
       } catch(e){
         return c.json({
