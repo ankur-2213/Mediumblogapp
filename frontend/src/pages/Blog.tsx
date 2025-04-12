@@ -1,4 +1,4 @@
-import { AppBar } from "../components/Appbar";
+
 import { FullBlog } from "../components/FullBlog";
 import { Spinner } from "../components/Spinner";
 import { useBlog } from "../hooks"
